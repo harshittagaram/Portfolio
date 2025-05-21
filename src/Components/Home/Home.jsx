@@ -308,6 +308,115 @@ const Home = () => {
       </div>
     </main>
   );
-};
+};<section id="contact" className="scroll-mt-24">
+  <h2 className="text-4xl font-bold mb-4 text-white">Contact Me</h2>
+  <p className="text-lg text-gray-300 mb-6">
+    Have a project in mind or want to collaborate? Drop me a message!
+  </p>
+
+  <form
+    onSubmit={async (e) => {
+      e.preventDefault(); // Prevent default form submission (page redirect)
+      const formData = new FormData(e.target);
+
+      try {
+        const response = await fetch("https://formspree.io/f/xdkgbbkv", {
+          method: "POST",
+          body: formData,
+          headers: {
+            Accept: "application/json",
+          },
+        });
+
+        if (response.ok) {
+          // Clear the form fields on successful submission
+          e.target.reset();
+          alert("Message sent successfully!");
+        } else {
+          alert("There was an error sending your message. Please try again.");
+        }
+      } catch (error) {
+        alert("There was an error sending your message. Please try again.");
+      }
+    }}
+    className="space-y-6 max-w-xl"
+  >
+    <div>
+      <label htmlFor="name" className="block text-gray-400 mb-1">
+        Name
+      </label>
+      <input
+        type="text"
+        id="name"
+        name="name"
+        required
+        className="w-full px-4 py-2 rounded-lg bg-gray-800 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+      />
+    </div>
+
+    <div>
+      <label htmlFor="email" className="block text-gray-400 mb-1">
+        Email
+      </label>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        required
+        className="w-full px-4 py-2 rounded-lg bg-gray-800 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+      />
+    </div>
+
+    <div>
+      <label htmlFor="message" className="block text-gray-400 mb-1">
+        Message
+      </label>
+      <textarea
+        id="message"
+        name="message"
+        rows="5"
+        required
+        className="w-full px-4 py-2 rounded-lg bg-gray-800 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+      ></textarea>
+    </div>
+
+    <button
+      type="submit"
+      className="w-full px-6 py-3 bg-indigo-600 hover:bg-indigo-700 rounded-lg text-white font-medium transition"
+    >
+      Send Message
+    </button>
+  </form>
+
+  <div className="mt-8 text-gray-400 space-y-1">
+    <p>
+      Email:{" "}
+      <a
+        href="mailto:harshit_tagaram@srmap.edu.in"
+        className="text-blue-400 underline"
+      >
+        harshit_tagaram@srmap.edu.in
+      </a>
+    </p>
+    <p>
+      LinkedIn:{" "}
+      <a
+        href="https://www.linkedin.com/in/harshit-tagaram-9922312a5/"
+        className="text-blue-400 underline"
+      >
+        linkedin.com/in/harshit
+      </a>
+    </p>
+    <p>
+      GitHub:{" "}
+      <a
+        href="https://github.com/harshittagaram"
+        className="text-blue-400 underline"
+      >
+        github.com/harshit
+      </a>
+    </p>
+  </div>
+</section>;
 
 export default Home;
